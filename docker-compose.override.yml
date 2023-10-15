@@ -1,0 +1,20 @@
+# For more information: https://laravel.com/docs/sail
+version: "3"
+
+networks:
+  proxy:
+    external: true
+
+services:
+  library:
+    volumes:
+      - "../../FINTAG/custom/php.ini:/etc/php/8.1/cli/conf.d/99-sail.ini"
+      - "/Users/wehmamxx/Library/Application Support/mkcert:/etc/certs"
+    labels:
+      - 'traefik.enable=true'
+      - "traefik.docker.network=proxy"
+      - 'traefik.http.routers.library.rule=Host(`library.fintag.test`)'
+      - 'traefik.http.routers.library.tls=true'
+      - 'traefik.http.services.library.loadbalancer.server.port=80'
+    networks:
+      - proxy

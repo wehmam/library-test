@@ -1,0 +1,36 @@
+# For more information: https://laravel.com/docs/sail
+version: "3"
+services:
+  library:
+    build:
+      context: ./docker/8.1
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: "${WWWGROUP}"
+    image: library:development
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ".:/var/www/html"
+    environment:
+      WWWUSER: "${WWWUSER}"
+      LARAVEL_SAIL: 1
+      XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-off}"
+      XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
+    networks:
+      - sail
+    depends_on:
+      - redis
+
+  redis:
+    container_name: library-redis
+    restart: "unless-stopped"
+    image: "redis:latest"
+    ports:
+      - 16377:6379
+    networks:
+      - "sail"
+networks:
+  sail:
+    driver: bridge
+
