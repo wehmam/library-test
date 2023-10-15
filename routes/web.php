@@ -34,5 +34,12 @@ Route::prefix("dashboard")->middleware(['auth'])->group(function() {
 
     Route::get("author/ajax", [AuthorController::class, "listAuthors"]);
     Route::resource("author", AuthorController::class);
+
+    Route::prefix("user")->middleware(['super-admin'])->group(function() {
+        Route::get("/", [AdminController::class, 'listUsers']);
+        Route::get("/create", [AdminController::class, 'createUser']);
+        Route::post("/", [AdminController::class, "addUser"]);
+    });
     Route::post("/logout", [AuthController::class, 'logout']);
+
 });

@@ -27,23 +27,25 @@
         Data
     </div>
 
-    <li class="nav-item {{ Request::segment(2) == "companies" ? "active" : ""  }}">
+    <li class="nav-item {{ Request::segment(2) == "books" ? "active" : ""  }}">
         <a class="nav-link" href="{{ url("/dashboard/book") }}">
-            <i class="fa fa-shopping-basket"></i>
+            <i class="fa fa-book"></i>
             <span>List Books</span></a>
     </li>
 
-    <li class="nav-item {{ Request::segment(2) == "categories" ? "active" : ""  }}">
+    <li class="nav-item {{ Request::segment(2) == "author" ? "active" : ""  }}">
         <a class="nav-link" href="{{ url("/dashboard/author") }}">
             <i class="fa fa-shopping-basket"></i>
             <span>List Authors</span></a>
     </li>
 
-    <li class="nav-item {{ Request::segment(2) == "product" ? "active" : ""  }}">
-        <a class="nav-link" href="{{ url("/backend/participants") }}">
-            <i class="fa fa-shopping-bag"></i>
-            <span>Participant</span></a>
-    </li>
+    @role('super-admin')
+        <li class="nav-item {{ Request::segment(2) == "user" ? "active" : ""  }}">
+            <a class="nav-link" href="{{ url("/dashboard/user") }}">
+                <i class="fa fa-shopping-bag"></i>
+                <span>List Users</span></a>
+        </li>
+    @endrole
 
     <hr class="sidebar-divider">
 </ul>

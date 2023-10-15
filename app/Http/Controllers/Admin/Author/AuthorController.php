@@ -14,7 +14,7 @@ class AuthorController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('your-middleware')->only(['store', 'update', 'destroy']);
+        $this->middleware('super-admin')->except('index');
     }
 
     public function index() {

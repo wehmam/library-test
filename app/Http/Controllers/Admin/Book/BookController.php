@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('super-admin')->except('index');
+    }
+    
     public function index() {
         $books = BookRepository::listBooks();
         return view("admin.pages.book.index", compact("books"));

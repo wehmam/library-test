@@ -35,16 +35,16 @@
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->publisher }}</td>
                                 <td>{{ $book->authors()->pluck("name")->implode(", ") }}</td>
-                                <td>
-                                    @role('super-admin')
+                                @role('super-admin')
+                                    <td>
                                         <a href="{{ url('dashboard/book/' . $book['id'] . '/edit') }}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i> Edit</a>
                                         <form action="{{ url('dashboard/book/' . $book['id']) }}" method="POST">
                                             @csrf
                                             @method("delete")
                                             <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></button>
                                         </form>
-                                    @endrole
-                                </td>
+                                    </td>
+                                @endrole
                             </tr>
                         @endforeach
                     </tbody>
