@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="-m-2">
-                <a class="font-bold text-blue-700 hover:bg-gray-200 hover:underline hover:p-5 p-4 rounded-full" href="#" onclick="alert('Opps Incoming Feature!')">Forgot password?</a>
+                <a class="font-bold text-blue-700 hover:bg-gray-200 hover:underline hover:p-5 p-4 rounded-full" href="{{ url("forgot") }}">Forgot password?</a>
             </div>
             <button class="w-full text-center bg-blue-400 hover:bg-blue-900 rounded-full text-white py-3 font-medium" type="submit">Sign in</button>
         </form>

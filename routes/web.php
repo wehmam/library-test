@@ -24,7 +24,13 @@ Route::get('/', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get("/forgot", [AuthController::class, 'forgotPassword']);
+    Route::post("forgot-password", [AuthController::class, "forgotPasswordProcess"]);
+    Route::get("reset-password", [AuthController::class, "resetPasswordView"]);
+    Route::post("reset-password", [AuthController::class, "resetPasswordProcess"]);
+
 });
+
 
 Route::prefix("dashboard")->middleware(['auth'])->group(function() {
     Route::get("/", [AdminController::class, 'dashboard']);
